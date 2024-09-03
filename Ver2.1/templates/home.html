@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h2>Modules</h2>
+</div>
+<div class="dashboard-cards">
+    <!-- Personal Details Card -->
+    <div class="card">
+        <a href="#">
+            <img src="https://via.placeholder.com/100x50?text=Personal+Details" alt="Personal Details">
+            <h3>Personal Details</h3>
+        </a>
+    </div>
+
+    <!-- Leave Application Card -->
+    <div class="card">
+        <a href="{{ url_for('leave_application') }}">
+            <img src="https://via.placeholder.com/100x50?text=Leave+Application" alt="Leave Application">
+            <h3>Leave Application</h3>
+        </a>
+    </div>
+
+    <!-- Disciplinary Record Card -->
+    <div class="card">
+        <a href="#">
+            <img src="https://via.placeholder.com/100x50?text=Disciplinary+Record" alt="Disciplinary Record">
+            <h3>Disciplinary Record</h3>
+        </a>
+    </div>
+
+    <!-- Payroll Card -->
+    <div class="card">
+        <a href="#">
+            <img src="https://via.placeholder.com/100x50?text=Payroll" alt="Payroll">
+            <h3>Payroll</h3>
+        </a>
+    </div>
+
+    <!-- Tasks Card -->
+    <div class="card">
+        <a href="#">
+            <img src="https://via.placeholder.com/100x50?text=Tasks" alt="Tasks">
+            <h3>Tasks</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}

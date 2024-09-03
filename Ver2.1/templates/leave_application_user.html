@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Leave Management{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="apply-leave">
+        <form method="POST" action="{{ url_for('leave_application') }}">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <label for="leave_reason">Reason:</label>
+            <input type="text" id="leave_reason" name="leave_reason" required>
+            <button type="submit" name="apply_leave">Apply for Leave</button>
+        </form>
+    </div>
+
+    <h2>Your Leave Applications</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leave in leave_data %}
+            <tr>
+                <td>{{ leave[2] }}</td> <!-- Start Date -->
+                <td>{{ leave[3] }}</td> <!-- End Date -->
+                <td>{{ leave[5] }}</td> <!-- Leave Reason -->
+                <td class="status">{{ leave[4] }}</td> <!-- Status -->
+                <td>
+                    {% if leave[4] == 'Submitted, Pending Review' %}
+                        <form method="POST" action="{{ url_for('leave_application') }}" style="display: inline;">
+                            <input type="hidden" name="leave_id" value="{{ leave[0] }}"> <!-- Leave ID -->
+                            <button type="submit" name="cancel_leave" class="cancel-button">Cancel</button>
+                        </form>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
